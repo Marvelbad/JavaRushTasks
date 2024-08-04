@@ -18,10 +18,10 @@ public class Solution {
                 int number = scanner.nextInt();
                 sum = sum + number;
             } else if (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                if (line.equalsIgnoreCase("ENTER")) {
-                    isExit = true;
-                }
+                String str = scanner.nextLine();
+              if (str.equalsIgnoreCase("Enter")) {
+                  isExit = true;
+              }
             }
         }
         System.out.println(sum);
