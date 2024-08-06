@@ -12,7 +12,7 @@ public class Solution {
         Scanner scanner = new Scanner(System.in);
         boolean userInput = scanner.nextBoolean();
 
-        if (userInput == true) {
+        if (userInput) {
             glass = Math.ceil(glass);
         } else {
             glass = Math.floor(glass);
