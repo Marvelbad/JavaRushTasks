@@ -11,12 +11,12 @@ public class Solution {
         double glass = 0.5;
         Scanner scanner = new Scanner(System.in);
         boolean userInput = scanner.nextBoolean();
-
+        int result;
         if (userInput) {
-            glass = Math.ceil(glass);
+            result = (int) Math.ceil(glass);
         } else {
-            glass = Math.floor(glass);
+            result = (int) Math.floor(glass);
         }
-        System.out.println(glass);
+        System.out.println(result);
     }
 }
