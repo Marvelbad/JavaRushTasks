@@ -4,13 +4,16 @@ package com.javarush.task.pro.task04.task0413;
 Рисуем треугольник
 */
 
+import java.util.Scanner;
+
 public class Solution {
     public static void main(String[] args) {
-        for (int i = 1; i <= 10; i++) {
-            for (int j = 1; j <= i; j++) {
-                System.out.print("8");
-            }
-            System.out.println();
+        Scanner scanner = new Scanner(System.in);
+        String str;
+
+        do {
+            str = scanner.nextLine();
         }
+        while (!str.equals("exit"));
     }
 }

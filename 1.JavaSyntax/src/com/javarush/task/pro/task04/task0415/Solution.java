@@ -14,7 +14,5 @@ public class Solution {
         double pi = 3.14;
         int square = (int) (pi * radius * radius);
         System.out.println(square);
-
-
     }
 }
