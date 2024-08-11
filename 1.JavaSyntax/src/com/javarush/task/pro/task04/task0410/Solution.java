@@ -14,14 +14,14 @@ public class Solution {
 
         while (scanner.hasNextInt()) {
             int number = scanner.nextInt();
-
             if (number < min) {
                 secondMin = min;
                 min = number;
-            } else if (number < secondMin && number != min) {
+            } else if (number > min && number != secondMin) {
                 secondMin = number;
             }
         }
+
         System.out.println(secondMin);
     }
 }
