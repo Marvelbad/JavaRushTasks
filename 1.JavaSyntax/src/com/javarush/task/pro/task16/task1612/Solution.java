@@ -19,11 +19,13 @@ public class Solution {
         printCollection(dateSet);
     }
 
-    static Set<LocalDateTime> convert(Map<LocalDate, List<LocalTime>> sourceMap) {
+    public static Set<LocalDateTime> convert(Map<LocalDate, List<LocalTime>> sourceMap) {
         Set<LocalDateTime> result = new HashSet<>();
-        for (Map.Entry<LocalDate, List<LocalTime>> entry : sourceMap.entrySet()) {
-            for (LocalTime time : entry.getValue()) {
-                result.add(LocalDateTime.of(entry.getKey(), time));
+        for (LocalDate localDate : sourceMap.keySet()) {
+            List<LocalTime> localTimes = sourceMap.get(localDate);
+            for (LocalTime localTime : localTimes) {
+                LocalDateTime localDateTime = LocalDateTime.of(localDate, localTime);
+                result.add(localDateTime);
             }
         }
 
