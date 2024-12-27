@@ -10,8 +10,8 @@ public class Solution {
     }
 
     public interface CanFly {
-        public void plainFly();
-        public void heliFly();
+        void plainFly();
+        void heliFly();
     }
 
 }
