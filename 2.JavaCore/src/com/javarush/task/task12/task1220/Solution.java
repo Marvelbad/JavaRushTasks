@@ -22,4 +22,16 @@ public class Solution {
 
     }
 
+    public class Swimmer extends Human {
+        @Override
+        public void run() {
+            System.out.println("Run");
+        }
+
+        @Override
+        public void swim() {
+            System.out.println("Swimming");
+        }
+    }
+
 }
