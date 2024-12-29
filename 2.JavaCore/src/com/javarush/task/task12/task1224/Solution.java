@@ -11,24 +11,32 @@ import java.util.Map;
 
 public class Solution {
     public static void main(String[] args) {
-        Map<Class, String> animals = new HashMap<>();
-
-        animals.put(Cat.class, "Кот");
-        animals.put(Tiger.class, "Тигр");
-        animals.put(Lion.class, "Лев");
-        animals.put(Bull.class, "Бык");
-        animals.put(Pig.class, "Свинья");
-
-        System.out.println(getObjectType(new Cat(), animals));
-        System.out.println(getObjectType(new Tiger(), animals));
-        System.out.println(getObjectType(new Lion(), animals));
-        System.out.println(getObjectType(new Bull(), animals));
-        System.out.println(getObjectType(new Pig(), animals));
+        System.out.println(getObjectType(new Cat()));
+        System.out.println(getObjectType(new Tiger()));
+        System.out.println(getObjectType(new Lion()));
+        System.out.println(getObjectType(new Bull()));
+        System.out.println(getObjectType(new Pig()));
     }
 
 
-    public static String getObjectType(Object o, Map<Class, String> animals) {
-        return animals.getOrDefault(o.getClass(), "Животное");
+    public static String getObjectType(Object o) {
+        if (o instanceof Cat) {
+            return "Кот";
+        }
+
+        if (o instanceof Tiger) {
+            return "Тигр";
+        }
+
+        if (o instanceof Lion) {
+            return "Лев";
+        }
+
+        if (o instanceof Bull) {
+            return "Бык";
+        }
+
+        return "Животное";
     }
 
     public static class Cat {
