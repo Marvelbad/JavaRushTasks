@@ -1,7 +1,7 @@
 package com.javarush.task.task12.task1233;
 
 /* 
-Изоморфы наступают
+Изоморфы наступают!
 */
 
 public class Solution {
