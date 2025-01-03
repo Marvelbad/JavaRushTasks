@@ -17,7 +17,18 @@ public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String fileName = console.readLine();
-        FileInputStream stream = new FileInputStream(fileName);
+        Scanner scanner = new Scanner(new FileInputStream(fileName));
 
+        List<Integer> data = new ArrayList<>();
+        while (scanner.hasNext()) {
+            int value = scanner.nextInt();
+            if (value % 2 == 0) data.add(value);
+        }
+
+        Collections.sort(data);
+        for (Integer value : data) {
+            System.out.println(value);
+        }
+        scanner.close();
     }
 }
