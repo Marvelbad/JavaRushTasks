@@ -11,7 +11,7 @@ import java.util.Scanner;
 */
 
 public class Solution {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String sourceFileName = reader.readLine();
         FileInputStream fileInputStream = new FileInputStream(sourceFileName);
