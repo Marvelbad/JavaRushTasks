@@ -17,9 +17,15 @@ public class Solution {
         DBObject initializeIdAndName(long id, String name);
     }
 
-    static class User {
+    static class User implements DBObject {
         long id;
         String name;
+
+        public User initializeIdAndName(long id, String name) {
+            this.id = id;
+            this.name = name;
+            return this;
+        }
 
         @Override
         public String toString() {
