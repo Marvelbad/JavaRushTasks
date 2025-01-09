@@ -14,12 +14,17 @@ public class Solution {
 
 
         while (true) {
-          String key = reader.readLine();
-          if (key.equalsIgnoreCase("user")) {
-              doWork(new Person.User());
-          }
-
-            doWork(person); //вызываем doWork
+            String key = reader.readLine();
+            if (key.equalsIgnoreCase("user")) {
+                doWork(new Person.User());
+            } else if (key.equalsIgnoreCase("loser")) {
+                doWork(new Person.Loser());
+            } else if (key.equalsIgnoreCase("coder")) {
+                doWork(new Person.Coder());
+            } else if (key.equalsIgnoreCase("proger")) {
+                doWork(new Person.Proger());
+            }
+            doWork(person);
 
         }
     }
