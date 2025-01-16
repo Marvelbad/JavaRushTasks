@@ -9,36 +9,28 @@ import java.io.InputStreamReader;
 */
 
 public class Solution {
+    public static int A = 0;
+    public static int B = 0;
+
     static {
-        BufferedReader reader = null;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
         try {
-          reader = new BufferedReader(new InputStreamReader(System.in));
-          Solution.A = Integer.parseInt(reader.readLine());
-          Solution.B = Integer.parseInt(reader.readLine());
+            A = Integer.parseInt(reader.readLine());
+            B = Integer.parseInt(reader.readLine());
+            reader.close();
         } catch (IOException e) {
-            System.out.println("Error " + e.getMessage());
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    System.out.println("Error " + e.getMessage());
-                }
-            }
+            e.printStackTrace();
         }
     }
 
-
-    public static int A;
-    public static int B;
-
-    public static final int MIN = min(A, B);
+    public static int MIN = min(A, B);
 
     public static void main(String[] args) {
         System.out.println(MIN);
     }
 
     public static int min(int a, int b) {
-        return Math.min(a, b);
+        return a < b ? a : b;
     }
 }
