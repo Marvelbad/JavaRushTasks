@@ -24,13 +24,12 @@ public class Solution {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
             String key = reader.readLine();
-            if ("plane".equalsIgnoreCase(key)) {
-                key = reader.readLine();
-                result = new Plane(Integer.parseInt(key));
-            } else if ("helicopter".equalsIgnoreCase(key)) {
+
+            if (key.equalsIgnoreCase("helicopter")) {
                 result = new Helicopter();
-            }
-            reader.close();
+            } else if (key.equalsIgnoreCase("plane")) {
+                result = new Plane(Integer.parseInt(key));
+            } reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
