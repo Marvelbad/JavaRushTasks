@@ -1,6 +1,8 @@
-package com.javarush.task.task15.task1521;
+package com.javarush.task.task15.task1523;
 
-public class SubSolution extends Solution{
+import com.javarush.task.task15.task1523.Solution;
+
+public class SubSolution extends Solution {
     public SubSolution() {
     }
 
