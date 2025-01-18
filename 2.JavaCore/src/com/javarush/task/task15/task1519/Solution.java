@@ -12,21 +12,25 @@ public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        while (true) {
-            String str = reader.readLine();
-            if (str.equals("exit")) {
-                return;
-            }
-
-            if (str.contains(".")) {
-                print(Double.parseDouble(str));
+        String key;
+        while (!(key = reader.readLine()).equalsIgnoreCase("exit")) {
+            if (key.matches("\\D+")) {
+                print(key);
             } else {
-                int num = (Integer.parseInt(str));
-                if (num > 0 && num < 128) {
-                    print((short) num);
-                } else {
-                    print(num);
-                } //via regular expression
+                try {
+                    if (key.contains(".")) {
+                        print(Double.parseDouble(key));
+                    } else {
+                        int num = Integer.parseInt(key);
+                        if (num > 0 && num < 128) {
+                            print((short) num);
+                        } else {
+                            print(num);
+                        }
+                    }
+                } catch (NumberFormatException e) {
+                    print(key);
+                }
             }
         }
     }
