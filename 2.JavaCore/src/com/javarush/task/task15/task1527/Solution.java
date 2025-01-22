@@ -21,13 +21,12 @@ public class Solution {
 
         for (String argument : arguments) {
             if (argument.contains("=")) {
-                int index = argument.indexOf("=");
-                String argumentName = argument.substring(0, index);
-                String value = argument.substring(index + 1);
-                if (argumentName.equals("obj")) {
-                    objValue = value;
+                String[] elements = argument.split("=");
+
+                if (elements[0].equals("obj")) {
+                    objValue = elements[1];
                 }
-                System.out.print(argumentName + " ");
+                System.out.print(elements[0] + " ");
             } else {
                 System.out.print(argument + " ");
             }
