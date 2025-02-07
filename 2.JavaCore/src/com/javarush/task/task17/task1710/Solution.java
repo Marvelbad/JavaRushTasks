@@ -2,6 +2,7 @@ package com.javarush.task.task17.task1710;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 /* 
@@ -34,5 +35,6 @@ public class Solution {
 
             System.out.println(allPeople.indexOf(person));
         }
+
     }
 }
