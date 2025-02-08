@@ -21,8 +21,8 @@ public class Solution {
     public static void main(String[] args) throws ParseException {
         Person person = null;
 
-        SimpleDateFormat input = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat output = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat input = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        SimpleDateFormat output = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
         if (args[0].equals("-c")) {
 
             if (args[2].equalsIgnoreCase("м")) {
