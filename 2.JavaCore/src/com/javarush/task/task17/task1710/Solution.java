@@ -50,7 +50,7 @@ public class Solution {
                 Date birthDate = person.getBirthDate();
                 System.out.println(name + " " + stringSex + " " + output.format(birthDate));
             }
-        } else if (args[0].equals("u")) {
+        } else if (args[0].equals("-u")) {
             int id = Integer.parseInt(args[1]);
             if (id >= 0 && id < allPeople.size()) {
                 person = allPeople.get(id);
