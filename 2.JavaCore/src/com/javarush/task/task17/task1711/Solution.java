@@ -11,7 +11,7 @@ CRUD 2
 */
 
 public class Solution {
-    public static volatile List<Person> allPeople = new ArrayList<Person>();
+    public static final List<Person> allPeople = new ArrayList<Person>();
 
     static {
         allPeople.add(Person.createMale("Иванов Иван", new Date()));  //сегодня родился    id=0
@@ -45,6 +45,70 @@ public class Solution {
                         }
                     }
                 }
+                break;
+
+            case "-u":
+                synchronized (allPeople) {
+                    for (int i = 1; i < args.length; i += 4) {
+                        try {
+                            int id = Integer.parseInt(args[i]);
+                            String name = args[i + 1];
+                            String sex = args[i + 2];
+                            Date bd = input.parse(args[i + 3]);
+
+                            if (id >= 0 && id < allPeople.size()) {
+                                person = allPeople.get(id);
+                                person.setName(name);
+                                person.setSex("м".equalsIgnoreCase(sex) ? Sex.MALE : Sex.FEMALE);
+                                person.setBirthDate(bd);
+                            }
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                }
+                break;
+
+            case "-d":
+                synchronized (allPeople) {
+                    for (int i = 1; i < args.length; i++) {
+                        try {
+                            int id = Integer.parseInt(args[i]);
+
+                            if (id >= 0 && id < allPeople.size()) {
+                                person = allPeople.get(id);
+                                person.setName(null);
+                                person.setSex(null);
+                                person.setBirthDate(null);
+                            }
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                }
+                break;
+
+            case "-i":
+                synchronized (allPeople) {
+                    for (int i = 1; i < args.length; i++) {
+                        try {
+                            int id = Integer.parseInt(args[i]);
+
+                            if (id >= 0 && id < allPeople.size()) {
+                                person = allPeople.get(id);
+                                if (person.getName() == null) {
+                                    System.out.println("Note deleted");
+                                } else {
+                                    String sex = (person.getSex() == Sex.MALE) ? "м" : "ж";
+                                    System.out.println(person.getName() + " " + sex + " " + output.format(person.getBirthDate()));
+                                }
+                            }
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                }
+                break;
         }
     }
 }
