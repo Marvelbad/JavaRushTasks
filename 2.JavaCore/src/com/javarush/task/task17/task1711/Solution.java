@@ -11,7 +11,7 @@ CRUD 2
 */
 
 public class Solution {
-    public static final List<Person> allPeople = new ArrayList<Person>();
+    public static volatile List<Person> allPeople = new ArrayList<Person>();
 
     static {
         allPeople.add(Person.createMale("Иванов Иван", new Date()));  //сегодня родился    id=0
@@ -36,7 +36,7 @@ public class Solution {
                                 Person.createMale(name, bd) : Person.createFemale(name, bd);
 
                         allPeople.add(person);
-                        System.out.println(allPeople.size() - 1);
+                        System.out.println(allPeople.size() - 1); //Print the last added person
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
