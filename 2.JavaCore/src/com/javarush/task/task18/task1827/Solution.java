@@ -14,16 +14,16 @@ import java.util.List;
 
 public class Solution {
     public static void main(String[] args) throws Exception {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-//        Path path = Paths.get(reader.readLine());
-//        List<String> strings = Files.readAllLines(path);
-//
-//
-//        Integer max = strings.stream()
-//                .map(str -> str.substring(0, 8).trim())
-//                .map(Integer::parseInt)
-//                .max(Comparator.naturalOrder()).get();
-        //Filereader
-        //filename in string expression
+        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+
+        String fileName = console.readLine();
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            while (reader.ready()) {
+                String result = reader.readLine();
+                String subStr = result.substring(0, 8);
+            }
+
+        }
     }
 }
