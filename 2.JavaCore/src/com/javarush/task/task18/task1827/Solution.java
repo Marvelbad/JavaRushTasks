@@ -22,7 +22,6 @@ public class Solution {
             while (reader.ready()) { //Здесь цикл чтобы, проверять, есть ли еще данные. То есть именно по строкам.
                 String fileInside = reader.readLine();
                 int id = Integer.parseInt(fileInside.substring(0, 8));
-
             }
 
         }
