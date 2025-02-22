@@ -11,7 +11,7 @@ public class Solution {
     public static void main(String[] args) throws Exception {
         if (args == null || args.length == 0) return;
 
-        Map<Integer, String> map = new LinkedHashMap<>();
+        Map<String, String> map = new LinkedHashMap<>();
 
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String fileName = console.readLine();
@@ -20,7 +20,7 @@ public class Solution {
             String fileData;
             while ((fileData = reader.readLine()) != null) {
                 String currentId = fileData.substring(0, 8).trim();
-                int id = Integer.parseInt(currentId);
+
 
                 String productName = fileData.substring(8, 38).trim();
                 String price = fileData.substring(38, 46).trim();
@@ -31,17 +31,17 @@ public class Solution {
                             args[2],
                             args[3],
                             args[4]);
-                    map.put(id, updateLine);
+                    map.put(currentId, updateLine);
                 } else if (args[0].equals("-d") && currentId.equals(args[1])) {
                 } else {
-                    map.put(id, String.format("%-30s%-8s%-4s", productName, price, quantity));
+                    map.put(currentId, String.format("%-30s%-8s%-4s", productName, price, quantity));
                 }
             }
         }
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            for (Map.Entry<Integer, String> entry :map.entrySet()) {
-                writer.write(String.format("%-8s%s\n", entry.getKey().toString(), entry.getValue()));
+            for (Map.Entry<String, String> entry :map.entrySet()) {
+                writer.write(String.format("%-8s%s\n", entry.getKey(), entry.getValue()));
             }
         }
     }
