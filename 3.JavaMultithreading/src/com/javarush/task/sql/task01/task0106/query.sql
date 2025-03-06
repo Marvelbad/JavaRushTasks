@@ -1,2 +1,2 @@
 -- Write your code here:
-SELECT * FROM
+SELECT * FROM user_name;
