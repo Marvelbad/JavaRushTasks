@@ -1,5 +1,4 @@
 -- Write your code here:
 SELECT *
 FROM car
-WHERE quantity
-  AND booked_quantity BETWEEN 10 AND 100
+WHERE (quantity - booked_quantity) BETWEEN 1 AND 100
