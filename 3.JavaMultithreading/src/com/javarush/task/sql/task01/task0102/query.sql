@@ -1,2 +1,3 @@
 -- Write your code here:
-SELECT id, name, smth from employee
+SELECT id, name, smth
+from employee
