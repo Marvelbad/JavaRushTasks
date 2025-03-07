@@ -1,1 +1,2 @@
-SELECT id, brand_logo, brand_name from brand
+SELECT id, brand_logo, brand_name
+from brand
