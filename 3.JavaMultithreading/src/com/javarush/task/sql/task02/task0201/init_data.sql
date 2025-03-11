@@ -6,5 +6,5 @@ CREATE TABLE numbers
 );
 
 insert into numbers (number1, number2)
-values (1, 5, 2),
-       (2, 3, 8);
+values (1, 3),
+       (2, 3);
