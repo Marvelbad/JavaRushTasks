@@ -1,4 +1,4 @@
 -- Write your code here:
-SELECT IF(salary > 1000, 'yes', 'no')
+SELECT id, IF(salary > 1000, 'yes', 'no')
 FROM employee
-WHERE id < 5
+WHERE id < 5;
