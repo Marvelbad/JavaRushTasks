@@ -1,7 +1,6 @@
 -- Write your code here:
 SELECT *
 FROM films
-         JOIN (SELECT year_born
-               FROM film_directors AS director
-               WHERE year_born < 1940
-               ) AS result ON films.director_id = result
+         JOIN (SELECT year_born, id
+               FROM film_directors
+               WHERE year_born < 1940) AS director ON director.id = films.director_id WHERE films.genre = 'sci-fi';
