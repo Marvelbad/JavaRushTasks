@@ -1,9 +1,8 @@
 -- Write your code here:
 SELECT *
-FROM film_directors
-RIGHT JOIN (SELECT title
-            FROM films AS film
-            WHERE title > 1990
-            ) AS result ON film_directors.id = fil
-            WHERE film_directors.country = 'USA'
-            LIMIT 5;
+FROm film_directors
+         RIGHT JOIN (SELECT title, director_id, year_released
+                     FROM films
+                     WHERE films.year_released > 1990) AS film ON film_directors.id = film.director_id
+WHERE film_directors.country = 'USA'
+LIMIT 5;
