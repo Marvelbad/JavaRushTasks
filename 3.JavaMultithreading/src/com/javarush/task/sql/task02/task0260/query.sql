@@ -1,5 +1,5 @@
 -- Write your code here:
-SELECT rating, name
+SELECT rating, GROUP_CONCAT(name)
 FROM employee
-WHERE rating > 2
-ORDER BY rating ASC;
+GROUP BY rating
+HAVING employee.rating > 2;

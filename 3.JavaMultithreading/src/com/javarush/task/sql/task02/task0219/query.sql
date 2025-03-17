@@ -1,3 +1,6 @@
 -- Write your code here:
-SELECT IF(euro IS NULL, 'good', 'bad')
+SELECT CASE
+           WHEN euro IS NULL THEN 'good'
+           ELSE 'bad'
+           END
 FROM cars;

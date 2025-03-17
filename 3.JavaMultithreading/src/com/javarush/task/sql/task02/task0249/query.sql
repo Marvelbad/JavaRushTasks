@@ -1,6 +1,5 @@
 -- Write your code here:
 SELECT department, position, COUNT(*) AS total
 FROM employee
-WHERE position = 'backend developer'
 GROUP BY department, position
-HAVING total = 1;
+HAVING total = 1 AND employee.position = 'backend developer';
