@@ -5,6 +5,6 @@ SELECT title, genre, year_released, grossed
 FROM films,
      tempTable,
      tempTable2
-WHERE grossed > tempTable.averageGrossed
-  AND year_released > tempTable2.averageYear
-GROUP BY year_released;
+WHERE films.grossed > tempTable.averageGrossed
+  AND films.year_released > tempTable2.averageYear
+GROUP BY films.year_released;
