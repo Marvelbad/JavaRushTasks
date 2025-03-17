@@ -1,3 +1,3 @@
 -- Write your code here:
-SELECT LEFT(name, 8)
+SELECT LEFT(employee.position, 8)
 FROM employee;
