@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS part;
+
+CREATE TABLE part
+(
+    `id`     INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `number` VARCHAR(25)  NOT NULL,
+    `name`   VARCHAR(100) NOT NULL,
+    `weight` FLOAT        NOT NULL
+);
