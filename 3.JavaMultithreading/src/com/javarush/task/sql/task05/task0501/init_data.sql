@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS publisher;
+
+CREATE TABLE publisher
+(
+    `id`   INT NOT NULL PRIMARY KEY,
+    `name` VARCHAR(100) DEFAULT NULL
+);
