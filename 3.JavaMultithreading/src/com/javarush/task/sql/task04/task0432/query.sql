@@ -4,4 +4,5 @@ SELECT MONTHNAME(date) AS month,
 FROM event
 WHERE status IN ('ERROR', 'FAILED')
 GROUP BY month
-ORDER BY event_count DESC;
+ORDER BY event_count DESC
+LIMIT 1;

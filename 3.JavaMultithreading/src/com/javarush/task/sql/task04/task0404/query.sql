@@ -1,3 +1,3 @@
 -- Write your code here:
-SELECT a / NULLIF(b, 0) AS result
+SELECT a DIV b AS result
 FROM math;
