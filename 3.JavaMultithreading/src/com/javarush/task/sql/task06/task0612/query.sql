@@ -1,6 +1,6 @@
 -- Write your code here:
 UPDATE employee
-SET salary   = 5000,
+SET salary   = COALESCE(salary, 0) + 500
     position = 'fullstack developer'
 WHERE position LIKE '%developer%';
 
