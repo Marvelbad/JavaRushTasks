@@ -7,7 +7,7 @@ CREATE TABLE `event`
     `status`    VARCHAR(10) not null,
     PRIMARY KEY(id),
     -- Write your code here:
-
+    FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 
 insert into event (id, date, user_id, type, status)
