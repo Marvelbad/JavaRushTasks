@@ -1,6 +1,6 @@
 -- Write your code here:
-SELECT DISTINCT publisher.name
+SELECT DISTINCT library.publisher.name
 FROM book
-JOIN author ON author.id = book.author_id
-JOIN publisher ON book.publisher_id = publisher.id
+JOIN library.author ON author.id = book.author_id
+JOIN library.publisher ON book.publisher_id = publisher.id
 WHERE author.full_name = 'Mark Twain';
