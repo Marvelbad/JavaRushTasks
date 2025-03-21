@@ -1,4 +1,4 @@
 -- Write your code here:
-UPDATE publisher
-SET publisher.name = 'Авторское издание'
-WHERE id = 3;
+UPDATE library.publisher
+SET name = 'Авторское издание'
+WHERE name = 'Wordsworth Editions';
