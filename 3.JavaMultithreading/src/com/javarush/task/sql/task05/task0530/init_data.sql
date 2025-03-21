@@ -1,5 +1,24 @@
+CREATE DATABASE IF NOT EXISTS space;
+
+USE space;
+
+DROP TABLE IF EXISTS object;
+
+CREATE TABLE object
+(
+    `id`             int NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+    `name`           varchar(100) DEFAULT NULL,
+    `type`           varchar(500) DEFAULT NULL,
+    `discoverer`     varchar(100) DEFAULT NULL,
+    `discovery_date` date         DEFAULT NULL
+);
+
 INSERT INTO object
-VALUES (5, 'Titan', 'SATELLITE', 'Christiaan Huygens', '1655-03-25'),
+VALUES (1, 'Uranus', 'PLANET', 'William Herschel', '1781-03-13'),
+       (2, 'Phobos', 'SATELLITE', 'Asaph Hall', '1877-08-18'),
+       (3, 'Deimos', 'SATELLITE', 'Asaph Hall', '1877-08-12'),
+       (4, '4446 Carolyn', 'ASTEROID', 'E. Bowell', '1985-10-15'),
+       (5, 'Titan', 'SATELLITE', 'Christiaan Huygens', '1655-03-25'),
        (6, 'Pluto', 'DWARF_PLANET', 'Clyde W. Tombaugh', '1930-02-18'),
        (7, 'P/2010 B2', 'COMET', 'WISE', '2010-01-22'),
        (8, 'C/1823 Y1', 'COMET', 'Nell de Breaute', '1823-12-29'),
