@@ -1,4 +1,4 @@
 -- Write your code here:
-SELECT part.weight
-FROM part
+SELECT lego.part.weight
+FROM lego.part
 ORDER BY weight ASC;
