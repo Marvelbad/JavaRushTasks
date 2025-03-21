@@ -1,4 +1,4 @@
 -- Write your code here:
 SELECT name
-FROM part
+FROM lego.part
 WHERE name LIKE '%Special%';
