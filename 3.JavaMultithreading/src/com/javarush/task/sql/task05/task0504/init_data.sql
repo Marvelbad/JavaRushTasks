@@ -1,10 +1,13 @@
+CREATE DATABASE IF NOT EXISTS library;
+
+USE library;
+
 DROP TABLE IF EXISTS author;
 
 CREATE TABLE author
 (
-    `id`         INT NOT NULL AUTO_INCREMENT,
-    `first_name` VARCHAR(50)  DEFAULT NULL,
-    `last_name`  VARCHAR(50)  DEFAULT NULL,
-    `full_name`  VARCHAR(100) DEFAULT NULL,
-    PRIMARY KEY (`id`)
-)
+    `id`         int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `first_name` varchar(50)  DEFAULT NULL,
+    `last_name`  varchar(50)  DEFAULT NULL,
+    `full_name`  varchar(100) DEFAULT NULL
+);
