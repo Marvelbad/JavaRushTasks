@@ -1,4 +1,4 @@
 -- Write your code here:
 SELECT name, released, inventory
-FROM lego_set
+FROM lego.lego_set
 ORDER BY released ASC, inventory ASC;
