@@ -43,7 +43,6 @@ public class Solution {
                     numberStr.substring(3, 6),
                     numberStr.substring(6, 8),
                     numberStr.substring(8));
-
         }
 
         @Override
