@@ -17,6 +17,7 @@ public class Solution {
         Read3Strings t1 = new Read3Strings();
         t1.start();
         t1.join();
+
         Read3Strings t2 = new Read3Strings();
         t2.start();
         t2.join();
