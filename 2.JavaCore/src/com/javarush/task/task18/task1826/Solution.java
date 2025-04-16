@@ -11,6 +11,10 @@ import java.io.IOException;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
+        if (args.length != 3) {
+            System.out.println("Error");
+            return;
+        }
         try (
                 FileInputStream input = new FileInputStream(args[1]);
                 FileOutputStream output = new FileOutputStream(args[2]);
