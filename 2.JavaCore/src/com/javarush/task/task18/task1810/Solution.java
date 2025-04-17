@@ -24,6 +24,3 @@ public class Solution {
     public static class DownloadException extends Exception {
     }
 }
-
-
-

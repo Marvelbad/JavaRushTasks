@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /* 
@@ -45,7 +46,7 @@ public class Solution {
     }
 
     public void joinData() throws CorruptedDataException {
-        if (allLines.containsAll(forRemoveLines)) {
+        if (new HashSet<>(allLines).containsAll(forRemoveLines)) {
             allLines.removeAll(forRemoveLines);
         } else {
             allLines.clear();
