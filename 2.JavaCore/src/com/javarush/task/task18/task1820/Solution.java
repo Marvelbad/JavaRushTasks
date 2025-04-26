@@ -4,6 +4,7 @@ import javax.xml.crypto.Data;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /* 
 Округление чисел
@@ -26,6 +27,25 @@ public class Solution {
                     output.write((num + " ").getBytes());
                 }
             }
+        }
+    }
+
+    public static void main1(String[] args) throws IOException {
+        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+        String fileName1 = console.readLine();
+        String fileName2 = console.readLine();
+
+        try (BufferedReader input = new BufferedReader(new FileReader(fileName1));
+             BufferedWriter output = new BufferedWriter(new FileWriter(fileName2))) {
+
+            String result = input.lines()
+                    .flatMap(line -> List.of(line.split("\\s+")).stream())
+                    .map(Double::parseDouble)
+                    .map(Math::round)
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(" "));
+
+            output.write(result);
         }
     }
 }
