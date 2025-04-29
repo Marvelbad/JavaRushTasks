@@ -2,9 +2,14 @@ package com.javarush.task.task18.task1820;
 
 import javax.xml.crypto.Data;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /* 
 Округление чисел
@@ -44,8 +49,18 @@ public class Solution {
                     .map(Math::round)
                     .map(String::valueOf)
                     .collect(Collectors.joining(" "));
-
             output.write(result);
         }
+    }
+
+    public static void main2(String[] args) throws IOException {
+        Files.write(Paths.get(new Scanner(System.in).nextLine()),
+                Files.readAllLines(Paths.get(new Scanner(System.in).nextLine())).stream()
+                        .map(string -> string.split("\\s+"))
+                        .flatMap(array -> Arrays.stream(array)
+                                .map(Double::parseDouble)
+                                .map(Math::round)
+                                .map(number -> String.join(" ")))
+                        .toList());
     }
 }
