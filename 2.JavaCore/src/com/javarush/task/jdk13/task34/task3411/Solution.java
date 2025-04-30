@@ -20,4 +20,11 @@ public class Solution {
         field.setAccessible(true);
         field.set(childObject, value);
     }
+
+//    public static void getParentClassName() {
+//        Class<?> aClass = Child.class.getSuperclass();
+//        String name = aClass.getSimpleName();
+//        System.out.println(name);
+//    }
+
 }
