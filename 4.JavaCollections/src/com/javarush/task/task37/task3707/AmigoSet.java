@@ -1,8 +1,6 @@
 package com.javarush.task.task37.task3707;
 
-import java.io.Closeable;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.util.*;
 
 public class AmigoSet<E> extends AbstractSet<E> implements Serializable, Cloneable, Set<E> {
@@ -65,4 +63,15 @@ public class AmigoSet<E> extends AbstractSet<E> implements Serializable, Cloneab
             throw new InternalError(e);
         }
     }
+
+    private void writeObject(ObjectOutputStream output) {
+        output.defaultWriteObject();
+        HashMapReflectionHelper.callHiddenMethod(map, "capacity");
+
+    }
+
+    private void readObject(ObjectInputStream input) {
+
+    }
+
 }

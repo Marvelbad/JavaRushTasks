@@ -20,6 +20,4 @@ public class Solution {
         field.setAccessible(true);
         field.set(childObject, value);
     }
-
-
 }
