@@ -1,0 +1,1 @@
+The problem is, it reads the line and moves on to the next one, which is not what I want. What I need is either for it to test whether the line is blank without moving on to the next line, or for it to go back to where it was before reading it.
