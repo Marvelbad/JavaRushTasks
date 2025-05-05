@@ -26,6 +26,18 @@ public class Human {
         return Collections.unmodifiableList(children);
     }
 
+    public void addChild(Human human) {
+        if (human != null) {
+            children.add(human);
+        }
+    }
+
+    public void removeChild(Human human) {
+        if (human != null) {
+            children.remove(human);
+        }
+    }
+
 
     public void setBloodGroup(int code) {
         bloodGroup = code;
