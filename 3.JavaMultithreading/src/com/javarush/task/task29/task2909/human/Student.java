@@ -17,14 +17,6 @@ public class Student extends Human {
         this.averageGrade = averageGrade;
     }
 
-    public List<Human> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<Human> children) {
-        this.children = children;
-    }
-
     public void live() {
         learn();
     }
