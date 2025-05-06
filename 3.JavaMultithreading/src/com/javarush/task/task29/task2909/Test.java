@@ -13,3 +13,8 @@ public class Test {
         System.out.println("OK");
     }
 }
+
+// Заменить наследование делегированием
+// Класс University не должен наследоваться от Student
+
+// Класс University должен содержать список students. Не забудь его инициализировать.
