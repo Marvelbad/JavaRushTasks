@@ -7,11 +7,12 @@ public class StudentsDataBase {
     public static List<Student> students = new ArrayList<>();
 
     public static void addInfoAboutStudent(Student student) {
+        students.add(student);
         printInfoAboutStudent(student);
     }
 
     public static void printInfoAboutStudent(Student student) {
-        System.out.println("Имя: " + student.getName() + "Возраст: " + student.getAge());
+        System.out.println("Имя: " + student.getName() + " Возраст: " + student.getAge());
     }
 
     public static void removeStudent(int index) throws IndexOutOfBoundsException {
