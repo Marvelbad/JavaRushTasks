@@ -6,8 +6,7 @@ import java.util.List;
 
 public class Human implements Alive {
     private List<Human> children = new ArrayList<>();
-    public static int nextId = 0;
-    private int id;
+    private static int nextId = 0;
     protected int age;
     protected String name;
 
@@ -69,14 +68,6 @@ public class Human implements Alive {
 
     @Override
     public void live() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void printSize() {
