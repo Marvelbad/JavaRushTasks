@@ -19,7 +19,6 @@ public class Solution {
             int counter = 0;
             char currentChar;
             int readValue;
-            StringBuilder stringBuilder = new StringBuilder();
             while ((readValue = input.read()) != -1) {
                 currentChar = (char) readValue;
                 counter++;
