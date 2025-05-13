@@ -1,58 +1,61 @@
 package com.javarush.task.task18.task1823;
 
-import java.io.*;
-import java.util.Collections;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.concurrent.ConcurrentHashMap;
 
 /* 
 Нити и байты
 */
 
 public class Solution {
-    public static Map<String, Integer> resultMap = new HashMap<String, Integer>();
+    public static Map<String, Integer> resultMap = new ConcurrentHashMap<>();
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-        String fileName;
-        while (!(fileName = reader.readLine()).equals("exit")) {
-            ReadThread readThread = new ReadThread(fileName);
+    public static void main(String[] args) throws IOException, InterruptedException {
+        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+        String line;
+        while (!(line = console.readLine()).equalsIgnoreCase("exit")) {
+            ReadThread readThread = new ReadThread(line);
             readThread.start();
         }
     }
 
     public static class ReadThread extends Thread {
-        private String fileName;
+        private final String fileName;
 
         public ReadThread(String fileName) {
             this.fileName = fileName;
         }
 
-        @Override
         public void run() {
-            Map<Integer, Integer> map = new HashMap<>();
-            try (FileInputStream input = new FileInputStream(fileName)) {
-                while (input.available() > 0) {
-                    int readByte = input.read();
-                    if (!map.containsKey(readByte)) {
-                        map.put(readByte, 1);
-                    } else {
-                        Integer value = map.get(readByte);
-                        map.put(readByte, value + 1);
+            Map<Integer, Integer> byteFrequency = new HashMap<>();
+            try (FileInputStream inputStream = new FileInputStream(fileName)) {
+                int data;
+                int maxCount = 0;
+                int minByte = Integer.MAX_VALUE;
+                while ((data = inputStream.read()) != -1) {
+                    byteFrequency.merge(data, 1, Integer::sum);
+                    for (Map.Entry<Integer, Integer> entry : byteFrequency.entrySet()) {
+                        int currentByte = entry.getKey();
+                        int count = entry.getValue();
+
+                        if (count > maxCount) {
+                            maxCount = count;
+                            minByte = currentByte;
+                        } else if (count == maxCount && currentByte < minByte) {
+                            minByte = currentByte;
+                        }
+                        resultMap.put(fileName, minByte);
                     }
                 }
 
             } catch (IOException e) {
+                e.printStackTrace();
             }
-            Integer max = Collections.max(map.values());
-            Integer byteKey = map.entrySet().stream()
-                    .filter(entry -> entry.getValue().equals(max))
-                    .map(entry -> entry.getKey())
-                    .sorted()
-                    .collect(Collectors.toList()).get(0);
-            resultMap.put(fileName, byteKey);
         }
     }
 }
