@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Solution {
     public static Map<String, Integer> resultMap = new ConcurrentHashMap<>();
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException {
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         String line;
         while (!(line = console.readLine()).equalsIgnoreCase("exit")) {
@@ -35,22 +35,22 @@ public class Solution {
             Map<Integer, Integer> byteFrequency = new HashMap<>();
             try (FileInputStream inputStream = new FileInputStream(fileName)) {
                 int data;
-                int maxCount = 0;
-                int minByte = Integer.MAX_VALUE;
                 while ((data = inputStream.read()) != -1) {
                     byteFrequency.merge(data, 1, Integer::sum);
-                    for (Map.Entry<Integer, Integer> entry : byteFrequency.entrySet()) {
-                        int currentByte = entry.getKey();
-                        int count = entry.getValue();
+                }
 
-                        if (count > maxCount) {
-                            maxCount = count;
-                            minByte = currentByte;
-                        } else if (count == maxCount && currentByte < minByte) {
-                            minByte = currentByte;
-                        }
-                        resultMap.put(fileName, minByte);
+                int maxCount = 0;
+                int minByte = 256;
+                for (Map.Entry<Integer, Integer> entry : byteFrequency.entrySet()) {
+                    int currentByte = entry.getKey();
+                    int count = entry.getValue();
+                    if (count > maxCount || (count == maxCount && currentByte < minByte)) {
+                        maxCount = count;
+                        minByte = currentByte;
                     }
+                }
+                if (!byteFrequency.isEmpty()) {
+                    resultMap.put(fileName, minByte);
                 }
 
             } catch (IOException e) {
