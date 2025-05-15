@@ -8,6 +8,6 @@ public class Sedan extends Car {
 
     @Override
     public int getMaxSpeed() {
-        return 120;
+        return MAX_SEDAN_SPEED;
     }
 }

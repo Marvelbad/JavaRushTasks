@@ -9,6 +9,7 @@ public class StudentsDataBase {
     public static void addInfoAboutStudent(Student student) {
         students.add(student);
         printInfoAboutStudent(student);
+
     }
 
     public static void printInfoAboutStudent(Student student) {
@@ -23,11 +24,11 @@ public class StudentsDataBase {
 
     public static void findDimaOrSasha() {
         for (Student student : students) {
-            if (student.getName().equalsIgnoreCase("Dima")) {
+            if (student.getName().equals("Dima")) {
                 System.out.println("Студент Dima есть в базе.");
                 break;
             }
-            if (student.getName().equalsIgnoreCase("Sasha")) {
+            if (student.getName().equals("Sasha")) {
                 System.out.println("Студент Sasha есть в базе.");
                 break;
             }

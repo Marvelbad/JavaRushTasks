@@ -15,9 +15,11 @@ public class UserHelper {
         userRoma.printAdditionalInfo();
     }
 
+
     public int calculateAverageAge() {
         User userUra = new User("Юра", "Карп", 28);
-        return (userAnya.getAge() + userRoma.getAge() + userUra.getAge()) / 3;
+
+        return  (userAnya.getAge() + userRoma.getAge() + userUra.getAge()) / 3;
     }
 
     public int calculateRate(AtomicInteger base, int age, boolean hasWork, boolean hasHouse) {

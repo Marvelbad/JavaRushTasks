@@ -6,6 +6,7 @@ public class User {
     private int age;
     private Address address;
 
+
     private boolean man;
 
     private Work work;
@@ -14,31 +15,6 @@ public class User {
         this.name = name;
         this.surname = surname;
         this.age = age;
-    }
-
-    public boolean isMan() {
-        return man;
-    }
-
-    public void setMan(boolean man) {
-        this.man = man;
-    }
-
-
-    public void printAdditionalInfo() {
-        if (getAge() < 16)
-            System.out.println("Пользователь моложе 16 лет");
-        else
-            System.out.println("Пользователь старше 16 лет");
-    }
-
-    public void printInfo() {
-        System.out.println("Имя: " + getName());
-        System.out.println("Фамилия: " + getSurname());
-    }
-
-    public String getBoss() {
-        return work.getBoss();
     }
 
     public String getName() {
@@ -91,5 +67,29 @@ public class User {
 
     public void setWork(Work work) {
         this.work = work;
+    }
+
+    public void printInfo() {
+        System.out.println("Имя: " + getName());
+        System.out.println("Фамилия: " + getSurname());
+    }
+
+    public void printAdditionalInfo() {
+        if (getAge() < 16)
+            System.out.println("Пользователь моложе 16 лет");
+        else
+            System.out.println("Пользователь старше 16 лет");
+    }
+
+    public boolean isMan() {
+        return man;
+    }
+
+    public void setMan(boolean man) {
+        this.man = man;
+    }
+
+    public String getBoss() {
+        return work.getBoss();
     }
 }

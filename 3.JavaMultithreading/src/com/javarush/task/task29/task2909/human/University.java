@@ -4,13 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class University {
-    private List<Student> students;
+    private List<Student> students = new ArrayList<>();
     private String name;
     private int age;
 
     public University(String name, int age) {
-        this.students = new ArrayList<>();
         this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -22,25 +37,9 @@ public class University {
         this.students = students;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public Student getStudentWithAverageGrade(double averageGrade) {
-        for (Student student : students) {
-            if (Math.abs(student.getAverageGrade() - averageGrade) < 0.0001) {
+        for (Student student : getStudents()) {
+            if (student.getAverageGrade() == averageGrade) {
                 return student;
             }
         }
@@ -48,34 +47,30 @@ public class University {
     }
 
     public Student getStudentWithMaxAverageGrade() {
-        Student topStudent = null;
-        double maxGrade = Double.MIN_VALUE;
-        for (Student student : students) {
-            if (student.getAverageGrade() > maxGrade) {
-                maxGrade = student.getAverageGrade();
-                topStudent = student;
+        double max = Double.MIN_VALUE;
+        Student bestStudent = null;
+        for (Student student : getStudents()) {
+            if (student.getAverageGrade() > max) {
+                bestStudent = student;
+                max = student.getAverageGrade();
             }
         }
-        return topStudent;
+        return bestStudent;
     }
 
     public Student getStudentWithMinAverageGrade() {
+        double min = Double.MAX_VALUE;
         Student worstStudent = null;
-        double minGrade = Double.MAX_VALUE;
-        for (Student student : students) {
-            if (student.getAverageGrade() < minGrade) {
-                minGrade = student.getAverageGrade();
+        for (Student student : getStudents()) {
+            if (student.getAverageGrade() < min) {
                 worstStudent = student;
+                min = student.getAverageGrade();
             }
         }
         return worstStudent;
     }
 
     public void expel(Student student) {
-        // Проверяем, есть ли студент в списке, прежде чем удалять.
-        // Это защита от попытки удалить несуществующего объекта.
-        if (students.contains(student)) {
-            students.remove(student);
-        }
+        students.remove(student);
     }
 }

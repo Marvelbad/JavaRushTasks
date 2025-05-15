@@ -7,6 +7,10 @@ public abstract class Car {
     static public final int SEDAN = 1;
     static public final int CABRIOLET = 2;
 
+    public static final int MAX_TRUCK_SPEED = 80;
+    public static final int MAX_SEDAN_SPEED = 120;
+    public static final int MAX_CABRIOLET_SPEED = 90;
+
     double fuel;
 
     public double summerFuelConsumption;
@@ -48,15 +52,15 @@ public abstract class Car {
     }
 
     public double getWinterConsumption(int length) {
-        return length * winterFuelConsumption + winterWarmingUp;
+        return winterFuelConsumption * length + winterWarmingUp;
     }
 
     public double getSummerConsumption(int length) {
         return length * summerFuelConsumption;
     }
 
-    public double getTripConsumption(Date date, int length, Date SummerStart, Date SummerEnd) {
-        if (isSummer(date, SummerStart, SummerEnd)) {
+    public double getTripConsumption(Date date, int length, Date summerStart, Date summerEnd) {
+        if (isSummer(date, summerStart, summerEnd)) {
             return getSummerConsumption(length);
         } else {
             return getWinterConsumption(length);
@@ -68,13 +72,6 @@ public abstract class Car {
             return numberOfPassengers;
         }
         return 0;
-    }
-
-    private boolean canPassengersBeTransferred() {
-        if (isDriverAvailable() && fuel > 0) {
-            return true;
-        }
-        return false;
     }
 
     public boolean isDriverAvailable() {
@@ -99,4 +96,8 @@ public abstract class Car {
     }
 
     public abstract int getMaxSpeed();
+
+    private boolean canPassengersBeTransferred() {
+        return isDriverAvailable() && fuel > 0;
+    }
 }

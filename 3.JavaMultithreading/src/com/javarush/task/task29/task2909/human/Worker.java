@@ -8,12 +8,12 @@ public class Worker extends Human {
         super(name, age);
     }
 
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
     public String getCompany() {
         return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public double getSalary() {

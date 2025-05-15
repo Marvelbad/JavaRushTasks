@@ -26,4 +26,5 @@ public class BloodGroup {
     public static BloodGroup fourth() {
         return new BloodGroup(4);
     }
+
 }
