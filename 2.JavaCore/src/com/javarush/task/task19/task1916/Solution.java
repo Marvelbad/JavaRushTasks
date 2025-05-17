@@ -1,7 +1,5 @@
 package com.javarush.task.task19.task1916;
 
-import com.sun.jdi.request.StepRequest;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,38 +14,48 @@ import java.util.List;
 public class Solution {
     public static List<LineItem> lines = new ArrayList<LineItem>();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-        String fileName1 = console.readLine();
-        String fileName2 = console.readLine();
+        String file1Lines = console.readLine();
+        String file2Lines = console.readLine();
+        console.close();
 
-        List<String> list1 = new ArrayList<>();
-        List<String> list2 = new ArrayList<>();
+        List<String> originalLines = new ArrayList<>();
+        List<String> updatedLines = new ArrayList<>();
 
-        try (BufferedReader reader1 = new BufferedReader(new FileReader(fileName1));
-             BufferedReader reader2 = new BufferedReader(new FileReader(fileName2))
+        try (BufferedReader reader1 = new BufferedReader(new FileReader(file1Lines));
+             BufferedReader reader2 = new BufferedReader(new FileReader(file2Lines))
+
         ) {
-            String str1;
-            while ((str1 = reader1.readLine()) != null) {
-                list1.add(str1);
+            String originalLine;
+            while ((originalLine = reader1.readLine()) != null) {
+                originalLines.add(originalLine);
             }
-            String str2;
-            while ((str2 = reader2.readLine()) != null) {
-                list2.add(str2);
-            }
-        }
 
-        while (!list1.isEmpty() && !list2.isEmpty()) {
-            if (list1.get(0).equals(list2.get(0))) {
-                lines.add(new LineItem(Type.SAME, list1.get(0)));
-                list1.remove(0);
-                list2.remove(0);
-            } else if (list1.get(0).equals(list2.get(1))) {
-                lines.add(new LineItem(Type.ADDED, list2.get(0)));
-                list2.remove(0);
-            } else if (list1.get(1).equals(list2.get(0))) {
-                lines.add(new LineItem(Type.REMOVED, list1.get(0)));
-                list1.remove(0);
+            String updatedLine;
+            while ((updatedLine = reader2.readLine()) != null) {
+                updatedLines.add(updatedLine);
+            }
+
+            int i = 0;
+            int j = 0;
+
+            while (i < originalLines.size() && j < updatedLines.size()) {
+                if (originalLines.get(i).equals(updatedLines.get(j))) {
+                    lines.add(new LineItem(Type.SAME, originalLines.get(i)));
+                    i++;
+                    j++;
+
+                } else if ((j + 1) < updatedLines.size() && originalLines.get(i).equals(updatedLines.get(j + 1))) {
+                    lines.add(new LineItem(Type.ADDED, updatedLines.get(j)));
+                } else if ((i + 1) < originalLines.size() && originalLines.get(i + 1).equals(updatedLines.get(j))) {
+                    lines.add(new LineItem(Type.REMOVED, originalLines.get(i)));
+                    i++;
+                }   //ПЕРЕПИСАТЬ УДАЛЕНИЕМ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            }
+
+            while (i < originalLines.size()) {
+                lines.add(new )
             }
         }
     }
