@@ -59,20 +59,19 @@ public class Solution {
     }
 
 
-
-public static enum Type {
-    ADDED,        //добавлена новая строка
-    REMOVED,      //удалена строка
-    SAME          //без изменений
-}
-
-public static class LineItem {
-    public Type type;
-    public String line;
-
-    public LineItem(Type type, String line) {
-        this.type = type;
-        this.line = line;
+    public static enum Type {
+        ADDED,        //добавлена новая строка
+        REMOVED,      //удалена строка
+        SAME          //без изменений
     }
-}
+
+    public static class LineItem {
+        public Type type;
+        public String line;
+
+        public LineItem(Type type, String line) {
+            this.type = type;
+            this.line = line;
+        }
+    }
 }
