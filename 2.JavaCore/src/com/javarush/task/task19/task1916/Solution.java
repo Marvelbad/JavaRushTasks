@@ -47,11 +47,11 @@ public class Solution {
                 }
             }
 
-            while (!originalLines.isEmpty()) {
+            if (!originalLines.isEmpty()) {
                 lines.add(new LineItem(Type.REMOVED, originalLines.get(0)));
                 originalLines.remove(0);
             }
-            while (!updatedLines.isEmpty()) {
+            if (!updatedLines.isEmpty()) {
                 lines.add(new LineItem(Type.ADDED, updatedLines.get(0)));
                 updatedLines.remove(0);
             }
