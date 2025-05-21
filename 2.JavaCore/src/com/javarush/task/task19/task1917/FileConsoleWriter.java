@@ -30,7 +30,6 @@ public class FileConsoleWriter {
     }
 
 
-
     public void write(char[] cbuf, int off, int len) throws IOException {
         fileWriter.write(cbuf, off, len);
         System.out.println(new String(cbuf).substring(off, off + len));
@@ -56,7 +55,7 @@ public class FileConsoleWriter {
         System.out.println(new String(cbuf));
     }
 
-    public void close() throws IOException{
+    public void close() throws IOException {
         fileWriter.close();
     }
 
