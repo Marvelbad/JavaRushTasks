@@ -43,7 +43,7 @@ public class Solution {
                 int minByte = 256;
                 for (Map.Entry<Integer, Integer> entry : byteFrequency.entrySet()) {
                     int currentByte = entry.getKey();
-                    int count = entry.getValue();
+                    int count = entry.getValue(); //!!!!!ПЕРЕПИСАТЬ НА collection.max!!!!!!!!!!!!
                     if (count > maxCount || (count == maxCount && currentByte < minByte)) {
                         maxCount = count;
                         minByte = currentByte;
