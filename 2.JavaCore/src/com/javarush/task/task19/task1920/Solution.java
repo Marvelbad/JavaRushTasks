@@ -5,10 +5,9 @@ import com.javarush.task.task15.task1521.Tree;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 /* 
 Самый богатый
@@ -35,19 +34,17 @@ public class Solution {
     }
 
     public static void main2(String[] args) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(args[0]))) {
-            Map<String, Double> result = reader.lines()
-                    .map(line -> line.split(" "))
-                    .collect(
-                            TreeMap::new,
-                            (map, arr) -> map.merge(arr[0], Double.parseDouble(arr[1]), Double::sum),
-                            TreeMap::putAll
-                    );
-            double max = Collections.max(result.values());
-            result.entrySet().stream()
-                    .filter(entry -> entry.getValue().equals(max))
-                    .map(Map.Entry::getKey)
-                    .forEach(System.out::println);
-        }
+        List<String> strings = Files.readAllLines(Paths.get(args[0]));
+        Map<String, Double> result = strings.stream()
+                .map(line -> line.split(" "))
+                .collect(
+                        TreeMap::new,
+                        (map, arr) -> map.merge(arr[0], Double.parseDouble(arr[1]), Double::sum),
+                        TreeMap::putAll
+                );
+        result.entrySet().stream()
+                .filter(entry -> entry.getValue().equals(Collections.max(result.values())))
+                .map(Map.Entry::getKey)
+                .forEach(System.out::println);
     }
 }
