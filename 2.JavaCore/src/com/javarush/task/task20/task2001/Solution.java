@@ -68,7 +68,7 @@ public class Solution {
         }
 
         public void save(OutputStream outputStream) throws Exception {
-            //implement this method - реализуйте этот метод
+
         }
 
         public void load(InputStream inputStream) throws Exception {
