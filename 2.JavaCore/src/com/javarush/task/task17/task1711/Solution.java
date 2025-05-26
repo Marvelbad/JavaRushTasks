@@ -15,85 +15,64 @@ public class Solution {
 
     static {
         allPeople.add(Person.createMale("Иванов Иван", new Date()));  //сегодня родился    id=0
-        allPeople.add(Person.createMale("Петров Петр", new Date()));  //сегодня родился    id=1
+        allPeople.add(Person.createFemale("Петров Петр", new Date()));  //сегодня родился    id=1
     }
 
+    private static SimpleDateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+    private static SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
+
     public static void main(String[] args) {
-        Person person = null;
 
-        SimpleDateFormat input = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-        SimpleDateFormat output = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
-
-        if (args[0].equalsIgnoreCase("-c")) {
-            synchronized (allPeople) {
-                for (int i = 1; i < args.length; i += 3) {
-                    try {
-                        String name = args[i];
-                        String sex = args[i + 1];
-                        Date bd = input.parse(args[i + 2]);
-
-                        person = "м".equalsIgnoreCase(sex) ?
-                                Person.createMale(name, bd) : Person.createFemale(name, bd);
-
-                        allPeople.add(person);
-                        System.out.println(allPeople.size() - 1); //Print the last added person
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-                }
-            }
-        } else if (args[0].equalsIgnoreCase("-u")) {
-            synchronized (allPeople) {
-                for (int i = 1; i < args.length; i += 4) {
-                    try {
-                        int id = Integer.parseInt(args[i]);
-                        if (id >= 0 && id < allPeople.size()) {
-
-                            person = allPeople.get(id);
-                            person.setName(args[i + 1]);
-                            person.setSex("м".equalsIgnoreCase(args[i + 2]) ? Sex.MALE : Sex.FEMALE);
-                            person.setBirthDate(input.parse(args[i + 3]));
+        try {
+            switch (args[0]) {
+                case "-c":
+                    synchronized (allPeople) {
+                        for (int i = 1; i < args.length; i = i + 3) {
+                            String name = args[i];
+                            String sex = args[i + 1];
+                            Date date = inputFormat.parse(args[i + 2]);
+                            Person person = sex.equals("м") ? Person.createMale(name, date) : Person.createFemale(name, date);
+                            allPeople.add(person);
+                            System.out.println(allPeople.indexOf(person));
                         }
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
                     }
-                }
-            }
-        } else if (args[0].equalsIgnoreCase("-d")) {
-            synchronized (allPeople) {
-                for (int i = 1; i < args.length; i++) {
-                    try {
-                        int id = Integer.parseInt(args[i]);
-                        if (id >= 0 && id < allPeople.size()) {
-                            person = allPeople.get(id);
-                            person.setName(null);
-                            person.setSex(null);
-                            person.setBirthDate(null);
+                    break;
+                case "-u":
+                    synchronized (allPeople) {
+                        for (int i = 1; i < args.length; i = i + 4) {
+                            int id = Integer.parseInt(args[i]);
+                            String name = args[i + 1];
+                            String sex = args[i + 2];
+                            Date date = inputFormat.parse(args[i + 3]);
+                            allPeople.get(id).setName(name);
+                            allPeople.get(id).setSex("м".equals(sex) ? Sex.MALE : Sex.FEMALE);
+                            allPeople.get(id).setBirthDate(date);
                         }
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
                     }
-                }
-            }
-        } else if (args[0].equalsIgnoreCase("-i")) {
-            synchronized (allPeople) {
-                for (int i = 1; i < args.length; i++) {
-                    try {
-                        int id = Integer.parseInt(args[i]);
-                        if (id >= 0 && id < allPeople.size()) {
-                            person = allPeople.get(id);
-                            if (person.getName() == null) {
-                                System.out.println("field was deleted");
-                            } else {
-                                System.out.println(person.getName() + " " + (person.getSex() == Sex.MALE ?
-                                        "м" : "ж") + " " + output.format(person.getBirthDate()));
-                            }
+                    break;
+                case "-d":
+                    synchronized (allPeople) {
+                        for (int i = 1; i < args.length; i++) {
+                            allPeople.get(Integer.parseInt(args[i])).setName(null);
+                            allPeople.get(Integer.parseInt(args[i])).setSex(null);
+                            allPeople.get(Integer.parseInt(args[i])).setBirthDate(null);
                         }
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
                     }
-                }
+                    break;
+                case "-i":
+                    synchronized (allPeople) {
+                        for (int i = 1; i < args.length; i++) {
+                            int id = Integer.parseInt(args[i]);
+                            Person person = allPeople.get(id);
+                            System.out.print(person.getName() + " ");
+                            System.out.print(person.getSex().equals(Sex.MALE) ? "м " : "ж ");
+                            System.out.println(outputFormat.format(person.getBirthDate()));
+                        }
+                    }
+                    break;
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
