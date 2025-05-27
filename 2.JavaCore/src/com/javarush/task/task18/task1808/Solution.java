@@ -9,26 +9,22 @@ import java.util.Arrays;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-        String fileOne = console.readLine();
-        String fileTwo = console.readLine();
-        String fileThree = console.readLine();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String inputFile = reader.readLine();
+        String outputFile1 = reader.readLine();
+        String outputFile2 = reader.readLine();
 
-        try (FileInputStream inputStream = new FileInputStream(fileOne);
-             FileOutputStream outputStream1 = new FileOutputStream(fileTwo);
-             FileOutputStream outputStream2 = new FileOutputStream(fileThree)
-        ) {
-            byte[] allBytes = inputStream.readAllBytes();
-            if (allBytes.length % 2 == 0) {
-                byte[] firstHalfArray = Arrays.copyOfRange(allBytes, 0, allBytes.length / 2);
-                byte[] secondHalfArray = Arrays.copyOfRange(allBytes, allBytes.length / 2, allBytes.length);
-                outputStream1.write(firstHalfArray);
-                outputStream2.write(secondHalfArray);
-            } else if (allBytes.length % 2 != 0) {
-                byte[] firstHalfArray = Arrays.copyOfRange(allBytes, 0, (allBytes.length / 2 + 1));
-                byte[] secondHalfArray = Arrays.copyOfRange(allBytes, (allBytes.length / 2) + 1, allBytes.length);
-                outputStream1.write(firstHalfArray);
-                outputStream2.write(secondHalfArray);
+        try (FileInputStream fileInputStream = new FileInputStream(inputFile);
+             FileOutputStream fileOutputStream1 = new FileOutputStream(outputFile1);
+             FileOutputStream fileOutputStream2 = new FileOutputStream(outputFile2)) {
+
+            int halfOfFile = (fileInputStream.available() + 1) / 2;
+            int numberOfByte = 0;
+            while (fileInputStream.available() > 0) {
+                if (numberOfByte < halfOfFile) {
+                    fileOutputStream1.write(fileInputStream.read());
+                    numberOfByte++;
+                } else fileOutputStream2.write(fileInputStream.read());
             }
         }
     }
