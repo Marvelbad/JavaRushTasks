@@ -5,8 +5,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.BufferOverflowException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.logging.SimpleFormatter;
 
 /* 
 Хуан Хуанович
@@ -15,29 +22,30 @@ import java.util.*;
 public class Solution {
     public static final List<Person> PEOPLE = new ArrayList<Person>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(args[0]))) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
             String line;
             while ((line = reader.readLine()) != null) {
-                String name = line.replaceAll(" (\\d{1,2} \\d{1,2} \\d{4})$", "");
-                String birth = line.replaceAll(".*?(\\d{1,2} \\d{1,2} \\d{4})$", "$1");
+                String name = line.replaceAll("\\d", "").trim();
+                String date = line.replaceAll("\\D", " ").trim();
 
-                String[] birthParts = birth.split(" ");
-                int day = Integer.parseInt(birthParts[0]);
-                int month = Integer.parseInt(birthParts[1]);
-                int year = Integer.parseInt(birthParts[2]);
-
-                Calendar cal = Calendar.getInstance();
-                cal.set(Calendar.YEAR, year);
-                cal.set(Calendar.MONTH, month - 1);
-                cal.set(Calendar.DAY_OF_MONTH, day);
-                Date date = cal.getTime();
-
-                PEOPLE.add(new Person(name, date));
+                PEOPLE.add(new Person(name, dateFormat.parse(date)));
             }
-        } catch (IOException e) {
+        } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
+        PEOPLE.forEach(System.out::println);
 
+        Files.readAllLines(Paths.get(args[0])).stream()
+                .map(string -> new Person(
+                        string.replaceAll("\\d", "").trim(),
+                        Date.from(
+                                LocalDate.parse(string.replaceAll("\\D", " ").trim(), DateTimeFormatter.ofPattern("dd MM yyyy"))
+                                        .atStartOfDay(ZoneId.systemDefault()).toInstant()
+                        )
+                ))
+                .forEach(PEOPLE::add);
+        PEOPLE.forEach(System.out::println);
     }
 }
