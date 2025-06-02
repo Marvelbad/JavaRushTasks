@@ -24,7 +24,6 @@ public class Solution {
 
         Random random = new Random();
 
-
         String string = "";
         while (!string.matches(".*\\d.*") ||
                 !string.matches(".*\\p{Ll}.*") ||
@@ -44,7 +43,5 @@ public class Solution {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 }
