@@ -27,6 +27,4 @@ public class MainModel implements Model{
         modelData.setUsers(users);
         modelData.setDisplayDeletedUserList(true);
     }
-
-
 }

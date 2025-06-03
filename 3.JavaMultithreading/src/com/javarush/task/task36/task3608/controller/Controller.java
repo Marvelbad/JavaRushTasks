@@ -9,12 +9,12 @@ public class Controller {
     private UsersView usersView;
     private EditUserView editUserView;
 
-    public void setModel(Model model) {
-        this.model = model;
+    public void setEditUserView(EditUserView editUserView) {
+        this.editUserView = editUserView;
     }
 
-    public void setUsersView(UsersView usersView) {
-        this.usersView = usersView;
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     public void onShowAllUsers() {
@@ -22,14 +22,12 @@ public class Controller {
         usersView.refresh(model.getModelData());
     }
 
-    public void setEditUserView(EditUserView editUserView) {
-        this.editUserView = editUserView;
+    public void setUsersView(UsersView usersView) {
+        this.usersView = usersView;
     }
 
     public void onShowAllDeletedUsers() {
         model.loadDeletedUsers();
         usersView.refresh(model.getModelData());
     }
-
-
 }
