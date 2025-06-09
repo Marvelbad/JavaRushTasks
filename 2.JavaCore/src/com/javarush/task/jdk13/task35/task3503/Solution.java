@@ -10,11 +10,11 @@ public class Solution<T extends ClassForGenerics & InterfaceForGenerics> impleme
         testClassSolution.check();
 
         //!!! Следующие оба варианта не должны работать, закомментируй их:
-        Solution<TestClassWrong1> wrong1Solution = new Solution<>();
-        wrong1Solution.check();
-
-        Solution<TestClassWrong2> wrong2Solution = new Solution<>();
-        wrong2Solution.check();
+//        Solution<TestClassWrong1> wrong1Solution = new Solution<>();
+//        wrong1Solution.check();
+//
+//        Solution<TestClassWrong2> wrong2Solution = new Solution<>();
+//        wrong2Solution.check();
     }
 
     public void check() {
