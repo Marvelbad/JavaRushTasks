@@ -22,7 +22,9 @@ public class Solution {
         controller.setEditUserView(editUserView);
 
         //emulate user events
+        usersView.fireEventShowAllUsers();
         usersView.fireEventOpenUserEditForm(126L);
+        editUserView.fireEventUserDeleted(124L);
         usersView.fireEventShowDeletedUsers();
     }
 }
