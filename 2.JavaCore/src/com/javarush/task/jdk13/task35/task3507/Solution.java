@@ -27,10 +27,11 @@ public class Solution {
     }
 
     public static <K, V> HashMap<K, V> newHashMap(List<? extends K> keys, List<? extends V> values) {
-        HashMap<K, V> result = new HashMap<>();
         if (keys.size() != values.size()) {
             throw new IllegalArgumentException("Error");
         }
+        HashMap<K, V> result = new HashMap<>();
+
         for (int i = 0; i < keys.size(); i++) {
             result.put(keys.get(i), values.get(i));
         }
@@ -46,7 +47,7 @@ public class Solution {
                 .collect(Collectors.toMap(
                         keys::get,
                         values::get,
-                        (v1, v2) -> v1, //если встретишь одинаковый ключ, оставь первое значение (v1), второе (v2) — проигнорируй
+                        (v1, v2) -> v2, //если встретишь одинаковый ключ, оставь первое значение (v1), второе (v2) — проигнорируй
                         HashMap::new
                 ));
     }
