@@ -4,7 +4,7 @@ package com.javarush.task.jdk13.task35.task3503;
 Несколько суперклассов для дженерика
 */
 
-public class Solution<T extends ClassForGenerics & InterfaceForGenerics> implements InterfaceForGenerics {
+public class Solution<T extends ClassForGenerics & InterfaceForGenerics> {
     public static void main(String[] args) {
         Solution<TestClassGood> testClassSolution = new Solution<>();
         testClassSolution.check();
