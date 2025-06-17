@@ -15,8 +15,6 @@ public class Solution {
 
         ) {
             statement.executeQuery("SELECT 7 * 8");
-        } catch (SQLException e) {
-            System.out.println("Connection lost");
         }
     }
 }
