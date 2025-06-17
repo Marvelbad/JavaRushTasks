@@ -15,10 +15,10 @@ public class Solution {
              ResultSet resultSet = statement.executeQuery("SELECT employee.name, weight, birthday, inn FROM employee");
         ) {
             while (resultSet.next()) {
-                Object name = resultSet.getObject("name");
-                Object weight = resultSet.getObject("weight");
-                Object birthday = resultSet.getObject("birthday");
-                Object inn = resultSet.getObject("inn");
+                String name = resultSet.getObject("name", String.class);
+                Float weight = resultSet.getObject("weight", Float.class);
+                Date birthday = resultSet.getObject("birthday", Date.class);
+                Long inn = resultSet.getObject("inn", Long.class);
 
                 System.out.println(name + " " + weight + " " + birthday + " " + inn);
             }
