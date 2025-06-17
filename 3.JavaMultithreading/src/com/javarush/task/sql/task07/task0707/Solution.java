@@ -12,12 +12,15 @@ public class Solution {
         try (Connection connection = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/test", "root", "root");
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery("SELECT name, id FROM employee")
+             ResultSet resultSet = statement.executeQuery("SELECT name, weight FROM employee")
         ) {
             while (resultSet.next()) {
                 String name = resultSet.getString("name");
-                int id = resultSet.getInt("id");
-                System.out.println(name + " " + id);
+                Float weight = resultSet.getFloat("weight");
+                if (resultSet.wasNull()) {
+                    weight = null;
+                }
+                System.out.println(name + " " + weight);
             }
         }
     }
