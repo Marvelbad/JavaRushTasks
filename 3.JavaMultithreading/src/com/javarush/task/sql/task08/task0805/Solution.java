@@ -23,10 +23,10 @@ public class Solution {
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "root");
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            for (Employee e : employees) {
-                statement.setString(1, e.getName());
-                statement.setInt(2, e.getAge());
-                statement.setString(3, e.getSmth());
+            for (Employee employee : employees) {
+                statement.setString(1, employee.getName());
+                statement.setInt(2, employee.getAge());
+                statement.setString(3, employee.getSmth());
                 statement.addBatch();
             }
             statement.executeBatch();
