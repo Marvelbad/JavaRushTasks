@@ -1,6 +1,8 @@
 package com.javarush.task.sql.task07.task0708;
 
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.util.function.LongToDoubleFunction;
 
 /* 
 Получение даты
@@ -16,7 +18,7 @@ public class Solution {
         ) {
             while (resultSet.next()) {
                 String name = resultSet.getString("name");
-                Timestamp created = resultSet.getTimestamp("created");
+                LocalDateTime created = resultSet.getObject("created", LocalDateTime.class);
                 System.out.println(name + " " + created);
             }
         }
