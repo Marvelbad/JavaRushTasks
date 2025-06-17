@@ -14,12 +14,9 @@ public class Solution {
     public static void main(String[] args) throws Exception {
         String sql = "insert into employee (name, age, smth) values (?, ?, ?)";
 
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
 
-        try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "root");
-            preparedStatement = connection.prepareStatement(sql);
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "root");
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);) {
 
             for (int i = 0; i < 5; i++) {
                 preparedStatement.setString(1, "employee" + i);
@@ -28,13 +25,6 @@ public class Solution {
                 preparedStatement.addBatch();
             }
             preparedStatement.executeBatch();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-                connection.close();
-            }
         }
     }
 }
