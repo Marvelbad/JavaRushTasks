@@ -28,7 +28,7 @@ public class Person {
         StandardToStringStyle style = new StandardToStringStyle();
         style.setUseClassName(false);
         style.setUseIdentityHashCode(false);
-        style.setContentStart("This persons");
+        style.setContentStart("This persons ");
         style.setFieldNameValueSeparator(" is ");
         style.setFieldSeparator("; ");
         style.setContentEnd(".");
