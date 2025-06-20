@@ -19,23 +19,18 @@ public class Solution {
     }
 
     public static Collection<Integer> compute(Set<Integer> setA, Set<Integer> setB) {
-        Set<Integer> result = new HashSet<>();
-        for (Integer i : setA) {
-            if (!setB.contains(i)) {
-                result.add(i);
-            }
-        }
-        for (Integer i : setB) {
-            if (!setA.contains(i)) {
-                result.add(i);
-            }
-        }
-
-        return result;
-    }
-
-    //Симметричная разность множеств
-    public static Collection<Integer> updatedCompute(Set<Integer> setA, Set<Integer> setB) {
+//        Set<Integer> result = new HashSet<>();
+//        for (Integer i : setA) {
+//            if (!setB.contains(i)) {
+//                result.add(i);
+//            }
+//        }
+//        for (Integer i : setB) {
+//            if (!setA.contains(i)) {
+//                result.add(i);
+//            }
+//        }
+        //Симметричная разность множеств
         return CollectionUtils.disjunction(setA, setB);
     }
 }
