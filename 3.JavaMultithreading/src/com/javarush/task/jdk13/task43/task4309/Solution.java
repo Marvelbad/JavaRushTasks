@@ -19,14 +19,9 @@ public class Solution {
     }
 
     public static Collection<Integer> compute(Set<Integer> setA, Set<Integer> setB) {
-        Set<Integer> result = new HashSet<>();
-        result.addAll(setA);
-        result.addAll(setB);
-        return result;
-    }
-
-    //My modified method
-    public static Collection<Integer> updatedCompute(Set<Integer> setA, Set<Integer> setB) {
+//        Set<Integer> result = new HashSet<>();
+//        result.addAll(setA);
+//        result.addAll(setB);
         return CollectionUtils.union(setA, setB);
     }
 }
