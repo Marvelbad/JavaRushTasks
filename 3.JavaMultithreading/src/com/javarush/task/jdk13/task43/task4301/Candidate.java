@@ -29,12 +29,15 @@ public class Candidate {
 
     @Override
     public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || this.getClass() != obj.getClass()) return false;
+
         return EqualsBuilder.reflectionEquals(
                 this,
                 obj,
                 true,
                 null,
-                new String[]{"name", "age", "height", "weight"}
+                "name", "age", "height", "weight"
         );
     }
 
