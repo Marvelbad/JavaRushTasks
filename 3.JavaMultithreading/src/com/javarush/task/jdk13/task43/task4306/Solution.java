@@ -22,9 +22,24 @@ public class Solution {
         if (studentOne == null || studentTwo == null) {
             return "Make sure there are no null objects";
         }
-        int result = ObjectUtils.compare(
-                getTotalScore(studentOne),
-                getTotalScore(studentTwo));
+
+        int scoreOne = studentOne.getMathScore()
+                + studentOne.getPhysicsScore()
+                + studentOne.getChemistryScore()
+                + studentOne.getBiologyScore()
+                + studentOne.getGeographyScore()
+                + studentOne.getHistoryScore()
+                + studentOne.getEnglishScore();
+
+        int scoreTwo = studentTwo.getMathScore()
+                + studentTwo.getPhysicsScore()
+                + studentTwo.getChemistryScore()
+                + studentTwo.getBiologyScore()
+                + studentTwo.getGeographyScore()
+                + studentTwo.getHistoryScore()
+                + studentTwo.getEnglishScore();
+
+        int result = ObjectUtils.compare(scoreOne, scoreTwo);
         if (result > 0)
             return studentOne.getName() + " has a higher grades score";
         if (result < 0)
@@ -33,23 +48,21 @@ public class Solution {
     }
 
     //Мой отдельный метод для суммирования каждого студента
-    public static int getTotalScore(Student s) {
-        int sum = 0;
-        Field[] declaredFields = Student.class.getDeclaredFields();
-        for (Field field : declaredFields) {
-            field.setAccessible(true);
-            Object value = null;
-            try {
-                value = field.get(s);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            }
-            if (value instanceof Integer && !field.getName().equals("name")) {
-                sum += (Integer) value;
-            }
-        }
-        return sum;
-    }
+//    public static int getTotalScore(Student s) {
+//        int sum = 0;
+//        Field[] declaredFields = Student.class.getDeclaredFields();
+//        for (Field field : declaredFields) {
+//            field.setAccessible(true);
+//            Object value = null;
+//            try {
+//                value = field.get(s);
+//            } catch (IllegalAccessException e) {
+//                throw new RuntimeException(e);
+//            }
+//            if (value instanceof Integer && !field.getName().equals("name")) {
+//                sum += (Integer) value;
+//            }
+//        }
+//        return sum;
+//    }
 }
-
-
