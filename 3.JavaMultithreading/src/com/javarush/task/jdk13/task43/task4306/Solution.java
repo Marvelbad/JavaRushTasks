@@ -23,23 +23,19 @@ public class Solution {
             return "Make sure there are no null objects";
         }
 
-        int scoreOne = studentOne.getMathScore()
-                + studentOne.getPhysicsScore()
-                + studentOne.getChemistryScore()
-                + studentOne.getBiologyScore()
-                + studentOne.getGeographyScore()
-                + studentOne.getHistoryScore()
-                + studentOne.getEnglishScore();
+        int[] scoreStudentOne = {studentOne.getMathScore(),
+                studentOne.getPhysicsScore(), studentOne.getChemistryScore(), studentOne.getBiologyScore(),
+                studentOne.getGeographyScore(), studentOne.getHistoryScore(), studentOne.getEnglishScore()};
 
-        int scoreTwo = studentTwo.getMathScore()
-                + studentTwo.getPhysicsScore()
-                + studentTwo.getChemistryScore()
-                + studentTwo.getBiologyScore()
-                + studentTwo.getGeographyScore()
-                + studentTwo.getHistoryScore()
-                + studentTwo.getEnglishScore();
+        int[] scoreStudentTwo = {studentTwo.getMathScore(),
+                studentTwo.getPhysicsScore(), studentTwo.getChemistryScore(), studentTwo.getBiologyScore(),
+                studentTwo.getGeographyScore(), studentTwo.getHistoryScore(), studentTwo.getEnglishScore()};
 
-        int result = ObjectUtils.compare(scoreOne, scoreTwo);
+        int result = 0;
+        for (int i = 0; i < scoreStudentOne.length; i++) {
+            result = result + ObjectUtils.compare(scoreStudentOne[i], scoreStudentTwo[i]);
+        }
+
         if (result > 0)
             return studentOne.getName() + " has a higher grades score";
         if (result < 0)
