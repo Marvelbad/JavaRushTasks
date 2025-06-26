@@ -19,6 +19,7 @@ public class Book {
     private Author author;
 
     @ManyToOne
+    @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
     @Column(name = "publication_year")
