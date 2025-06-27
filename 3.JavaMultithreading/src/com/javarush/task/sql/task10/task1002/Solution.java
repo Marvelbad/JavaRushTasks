@@ -1,6 +1,5 @@
 package com.javarush.task.sql.task10.task1002;
 
-import com.javarush.task.sql.task10.task1001.MySessionFactory;
 import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,16 +18,13 @@ public class Solution {
     }
 
     public static Employee getDirector() {
-        try (SessionFactory sessionFactory = MySessionFactory.getSessionFactory()) {
-            try {
-                Session session = sessionFactory.openSession();
-                Query<Employee> query = session.createQuery(
-                        "from Employee e where e.smth = 'director'", Employee.class);
-                Employee result = query.getSingleResult();
-                return result;
-            } catch (NoResultException e) {
-                throw new RuntimeException(e);
-            }
+        try (SessionFactory sessionFactory = MySessionFactory.getSessionFactory();
+             Session session = sessionFactory.openSession();
+        ) {
+            String hql = "from Employee where smth = 'director'";
+            Query<Employee> query = session.createQuery(hql, Employee.class);
+            Employee result = query.getSingleResult();
+            return result;
         }
     }
 }
