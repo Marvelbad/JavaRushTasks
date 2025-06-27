@@ -14,14 +14,13 @@ task1001
 public class Solution {
 
     public static void main(String[] args) throws Exception {
-        SessionFactory sessionFactory = MySessionFactory.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        Query query = session.createQuery("select distinct smth" +
-                " from Employee where age > 18 order by smth");
-        List<String> resultList = query.getResultList();
-        for (String value : resultList) {
-            System.out.println(value);
+        try (SessionFactory sessionFactory = MySessionFactory.getSessionFactory();
+             Session session = sessionFactory.openSession()
+        ) {
+            String hql = "select distinct smth from Employee where age > 18 order by smth";
+            Query<String> query = session.createQuery(hql, String.class);
+            List<String> resultList = query.getResultList();
+            resultList.forEach(System.out::println);
         }
-        session.close();
     }
 }
