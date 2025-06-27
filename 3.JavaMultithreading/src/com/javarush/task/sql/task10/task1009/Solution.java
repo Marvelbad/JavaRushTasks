@@ -17,26 +17,22 @@ public class Solution {
     }
 
     public static Long getSalaryFund() {
-        Long salaryResult = 0L;
         try (SessionFactory sessionFactory = MySessionFactory.getSessionFactory();
              Session session = sessionFactory.openSession()
         ) {
-            Query<Long> query = session.createQuery(
-                    "select sum(salary) from Employee");
-            salaryResult = query.getSingleResult();
+            Query<Long> query = session.createQuery("select sum(salary) from Employee", Long.class);
+            Long singleResult = query.getSingleResult();
+            return singleResult;
         }
-        return salaryResult;
     }
 
     public static Double getAverageAge() {
-        Double averageResult = 0.0;
         try (SessionFactory sessionFactory = MySessionFactory.getSessionFactory();
              Session session = sessionFactory.openSession();
         ) {
-            Query<Double> query = session.createQuery(
-                    "select avg(age) from Employee");
-            averageResult = query.getSingleResult();
+            Query<Double> query = session.createQuery("select avg(age) from Employee", Double.class);
+            Double singleResult = query.getSingleResult();
+            return singleResult;
         }
-        return averageResult;
     }
 }
