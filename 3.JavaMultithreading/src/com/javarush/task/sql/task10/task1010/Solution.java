@@ -20,15 +20,14 @@ public class Solution {
     }
 
     public static List<Employee> getAll() {
-        List<Employee> employees = null;
         try (SessionFactory sessionFactory = MySessionFactory.getSessionFactory();
              Session session = sessionFactory.openSession()
         ) {
-            NativeQuery<Employee> nativeQuery = session.createNativeQuery(
-                    "SELECT * FROM employee ORDER BY id", Employee.class);
-            employees = nativeQuery.getResultList();
+            String sql = "SELECT * FROM employee ORDER BY id";
+            NativeQuery<Employee> nativeQuery = session.createNativeQuery(sql, Employee.class);
+            List<Employee> resultList = nativeQuery.getResultList();
+            return resultList;
         }
 
-        return employees;
     }
 }
