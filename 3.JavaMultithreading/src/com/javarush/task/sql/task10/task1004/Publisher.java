@@ -4,11 +4,10 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table
+@Table(name = "publisher")
 public class Publisher {
 
     @Id
-    @Column(name = "id")
     @GeneratedValue
     private Integer id;
 

@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 @Table(name = "author")
 public class Author {
     @Id
-    @Column(name = "id")
     @GeneratedValue
     private Integer id;
     @Column(name = "first_name")
