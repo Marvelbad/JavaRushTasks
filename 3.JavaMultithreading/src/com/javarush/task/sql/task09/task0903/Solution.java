@@ -14,11 +14,11 @@ public class Solution {
 
     public static void main(String[] args) throws Exception {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.connection.driver" ,"com.mysql.jdbc.Driver");
-        properties.setProperty("hibernate.connection.url" ,"jdbc:mysql://localhost:3306/test");
-        properties.setProperty("hibernate.dialect" ,"org.hibernate.dialect.MySQLDialect");
-        properties.setProperty("hibernate.connection.username", "root");
-        properties.setProperty("hibernate.connection.password", "root");
+        properties.put(Environment.DRIVER,"com.mysql.jdbc.Driver");
+        properties.put(Environment.URL,"jdbc:mysql://localhost:3306/test");
+        properties.put(Environment.DIALECT,"org.hibernate.dialect.MySQLDialect");
+        properties.put(Environment.USER, "root");
+        properties.put(Environment.PASS, "root");
 
         Configuration configuration = new Configuration();
         configuration.setProperties(properties);
