@@ -20,18 +20,15 @@ public class Solution {
     }
 
     public static List<Employee> getBetween(int from, int to) {
-        List<Employee> resultList = null;
         try (SessionFactory sessionFactory = MySessionFactory.getSessionFactory();
              Session session = sessionFactory.openSession();
         ) {
-            Query query = session.createQuery(
-                    "from Employee where age > :from and age < :to order by age",
-                    Employee.class);
-            query.setParameter("from", from);
-            query.setParameter("to", to);
-            resultList = query.getResultList();
+            String hql = "from Employee where age > :FROM and age < :TO order by age";
+            Query<Employee> query = session.createQuery(hql, Employee.class);
+            query.setParameter("FROM", from);
+            query.setParameter("TO", to);
+            List<Employee> resultList = query.getResultList();
+            return resultList;
         }
-
-        return resultList;
     }
 }
