@@ -68,11 +68,27 @@ public class Solution {
         }
 
         public void save(OutputStream outputStream) throws Exception {
-
+            try (PrintWriter writer = new PrintWriter(outputStream)) {
+                writer.println(name);
+                writer.println(assets.size());
+                for (Asset asset : assets) {
+                    writer.println(asset.getName());
+                    writer.println(asset.getPrice());
+                }
+                writer.flush();
+            }
         }
 
         public void load(InputStream inputStream) throws Exception {
-            //implement this method - реализуйте этот метод
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+                this.name = reader.readLine();
+                int assetCount = Integer.parseInt(reader.readLine());
+                for (int i = 0; i < assetCount; i++) {
+                    String assetName = reader.readLine();
+                    double price = Double.parseDouble(reader.readLine());
+                    assets.add(new Asset(assetName, price));
+                }
+            }
         }
     }
 }
