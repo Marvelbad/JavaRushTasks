@@ -6,7 +6,7 @@ import com.javarush.task.task36.task3608.model.service.UserServiceImpl;
 
 import java.util.List;
 
-public class MainModel implements Model{
+public class MainModel implements Model {
     private ModelData modelData = new ModelData();
     private UserService userService = new UserServiceImpl();
 
@@ -46,5 +46,12 @@ public class MainModel implements Model{
         List<User> allUsers = userService.getUsersBetweenLevels(1, 100);
         allUsers = userService.filterOnlyActiveUsers(allUsers);
         return allUsers;
+    }
+
+    @Override
+    public void changeUserData(String name, long id, int level) {
+        userService.createOrUpdateUser(name, id, level);
+        List<User> users = getAllUsers();
+        modelData.setUsers(users);
     }
 }
