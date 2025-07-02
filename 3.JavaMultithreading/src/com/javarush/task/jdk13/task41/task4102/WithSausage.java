@@ -8,7 +8,7 @@ public class WithSausage extends PizzaDecorator{
 
     @Override
     public String getIngredients() {
-        return super.getIngredients() + " колбаса";
+        return super.getIngredients() + ", колбаса";
     }
 
     @Override

@@ -7,7 +7,7 @@ public class WithChicken extends PizzaDecorator{
     }
 
     public String getIngredients() {
-        return super.getIngredients() + " курица";
+        return super.getIngredients() + ", курица";
     }
 
     public double getCost() {

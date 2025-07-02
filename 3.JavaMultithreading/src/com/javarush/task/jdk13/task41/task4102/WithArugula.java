@@ -8,7 +8,7 @@ public class WithArugula  extends PizzaDecorator {
 
     @Override
     public String getIngredients() {
-        return super.getIngredients() + " руккола";
+        return super.getIngredients() + ", руккола";
     }
 
     @Override
