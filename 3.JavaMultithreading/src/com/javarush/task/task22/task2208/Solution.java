@@ -23,7 +23,7 @@ public class Solution {
         for (Map.Entry<String, String> entry : params.entrySet()) {
             if (entry.getValue() != null) {
                 builder.append(entry.getKey())
-                        .append("  = '")
+                        .append(" = '")
                         .append(entry.getValue())
                         .append("' and ");
             }
@@ -31,8 +31,8 @@ public class Solution {
 
 
 //        return builder.delete(builder.lastIndexOf("'") + 1, builder.length()).toString();
-//        return builder.substring(0, builder.lastIndexOf("'") + 1);
-        String trim = builder.toString().trim();
-        return trim.substring(0, trim.lastIndexOf(" "));
+        return builder.substring(0, builder.lastIndexOf("'") + 1);
+//        String trim = builder.toString().trim();
+//        return trim.substring(0, trim.lastIndexOf(" "));
     }
 }
