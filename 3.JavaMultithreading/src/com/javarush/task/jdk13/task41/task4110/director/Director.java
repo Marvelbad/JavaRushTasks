@@ -17,4 +17,10 @@ public class Director {
         builder.setSauce("острый");
         builder.setTopping("пепперони + салями");
     }
+    public void makeSpicyPizza2(Builder builder) {
+        builder.setType(PizzaType.SPICY);
+
+        builder.setSauce("острый2");
+        builder.setTopping("пепперони2 + салями");
+    }
 }
