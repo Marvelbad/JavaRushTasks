@@ -15,11 +15,6 @@ public class PizzaBuilder implements Builder{
         return new Pizza(type, dough, sauce, topping);
     }
 
-    public Recipe getRecipe() {
-        return new Recipe(type, dough, sauce, topping);
-    }
-
-
 
     @Override
     public void setType(PizzaType type) {
