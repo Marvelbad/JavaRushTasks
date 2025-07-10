@@ -9,19 +9,31 @@ import java.util.*;
 
 public class Solution {
     public static void main(String[] args) throws Exception {
-        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
-        String str = console.readLine();
-        String[] strings = null;
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(str))) {
-            String line;
-            if ((line = reader.readLine()) != null) {
-                strings = line.split(" ");
-            }
+        List<String> words = readWordsFromFile();
+        if (words.isEmpty()) {
+            System.out.println("Файл пустой или не найден.");
+            return;
         }
-
-        StringBuilder result = getLine(strings);
+        StringBuilder result = getLine(words.toArray(new String[0]));
         System.out.println(result);
+    }
+
+    private static List<String> readWordsFromFile() {
+        List<String> words = new ArrayList<>();
+        try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in))) {
+            String filename = console.readLine();
+            try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if (!line.trim().isEmpty()) {
+                        words.addAll(Arrays.asList(line.trim().split("\\s+")));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Ошибка чтения файла: " + e.getMessage());
+        }
+        return words;
     }
 
     public static StringBuilder getLine(String... words) {
@@ -35,30 +47,45 @@ public class Solution {
 
             StringBuilder builder = new StringBuilder(word);
             int count = 0;
-            while (!list.isEmpty()) {
+            int maxTries = (words.length * words.length);
+
+            while (!list.isEmpty() && count <= maxTries) {
                 String firstStartChar = builder.substring(0, 1);
                 String firstEndChar = builder.substring(builder.length() - 1);
-                String str = list.get(0);
-                String secondStartChar = str.substring(0, 1);
-                String secondEndChar = str.substring(str.length() - 1);
 
-                if (firstEndChar.equalsIgnoreCase(secondStartChar)) {
-                    builder.append(" ").append(str);
-                    list.remove(0);
-                } else if (firstStartChar.equalsIgnoreCase(secondEndChar)) {
-                    builder.insert(0, str + " ");
-                    list.remove(0);
-                } else {
-                    list.remove(str);
-                    list.add(str);
+                boolean wordAdded = false;
+
+                for (int i = 0; i < list.size(); i++) {
+                    String candidate = list.get(i);
+                    String candidateStart = candidate.substring(0, 1);
+                    String candidateEnd = candidate.substring(candidate.length() - 1);
+
+                    if (firstEndChar.equalsIgnoreCase(candidateStart)) {
+                        builder.append(" ").append(candidate);
+                        list.remove(i);
+                        wordAdded = true;
+                        break;
+                    } else if (firstStartChar.equalsIgnoreCase(candidateEnd)) {
+                        builder.insert(0, candidate + " ");
+                        list.remove(i);
+                        wordAdded = true;
+                        break;
+                    }
+                }
+
+                if (!wordAdded) {
+                    // если никто не подошёл — увеличиваем count и двигаем первый элемент в конец
+                    String temp = list.remove(0);
+                    list.add(temp);
                     count++;
-                    if (count > Math.pow(words.length, 2)) break;
                 }
             }
             builderList.add(builder);
         }
-        builderList.forEach(System.out::println);
+
+        // возвращаем самую длинную цепочку, а не первую попавшуюся
         return builderList.stream()
-                .max(Comparator.comparingInt(StringBuilder::length)).get();
+                .max(Comparator.comparingInt(StringBuilder::length))
+                .orElse(new StringBuilder());
     }
 }
