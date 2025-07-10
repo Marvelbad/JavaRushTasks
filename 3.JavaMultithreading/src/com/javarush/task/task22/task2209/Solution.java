@@ -83,7 +83,7 @@ public class Solution {
             builderList.add(builder);
         }
 
-        // возвращаем самую длинную цепочку, а не первую попавшуюся
+        // возвращаем самую длинную цепочку
         return builderList.stream()
                 .max(Comparator.comparingInt(StringBuilder::length))
                 .orElse(new StringBuilder());
