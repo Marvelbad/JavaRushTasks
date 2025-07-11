@@ -10,6 +10,14 @@ public class Solution {
     }
 
     public void recurse(int n) {
-
+        int i = 2;
+        while (i <= n) {
+            if (n % i == 0) {
+                System.out.println(i + " ");
+                recurse(n / i);
+                break;
+            }
+            i++;
+        }
     }
 }
