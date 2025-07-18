@@ -19,6 +19,7 @@ public class Server {
             }
         }
     }
+
     public static void main(String[] args) {
         ConsoleHelper.writeMessage("Введите порт сервера");
         int port = ConsoleHelper.readInt();
@@ -52,7 +53,7 @@ public class Server {
                         !connectionMap.containsKey(name)) {
                     connectionMap.put(name, connection);
                     connection.send(new Message(MessageType.NAME_ACCEPTED, "Добро пожаловать в чат!"));
-                return name;
+                    return name;
                 } else {
                     ConsoleHelper.writeMessage("Введен неверный тип сообщения или некорректное имя");
                 }
@@ -63,6 +64,18 @@ public class Server {
             for (String name : connectionMap.keySet()) {
                 if (!name.equals(userName)) {
                     connection.send(new Message(MessageType.USER_ADDED, name));
+                }
+            }
+        }
+
+        private void serverMainLoop(Connection connection, String userName) throws Exception, ClassNotFoundException {
+            while (true) {
+                Message receive = connection.receive();
+                if (receive.getType() == MessageType.TEXT) {
+                    sendBroadcastMessage(new Message(MessageType.TEXT, userName +
+                            ": " + receive.getData()));
+                } else {
+                    ConsoleHelper.writeMessage("Тип сообщения не текст!");
                 }
             }
         }
