@@ -35,7 +35,6 @@ public class Client {
     }
 
     protected void sendTextMessage(String text) {
-
         try {
             Message message = new Message(MessageType.TEXT, text);
             connection.send(message);
