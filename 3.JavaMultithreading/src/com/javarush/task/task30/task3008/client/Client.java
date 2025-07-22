@@ -35,7 +35,6 @@ public class Client {
     }
 
     protected void sendTextMessage(String text) {
-
         try {
             Message message = new Message(MessageType.TEXT, text);
             connection.send(message);
@@ -45,6 +44,41 @@ public class Client {
         }
     }
 
+    public void run() {
+        SocketThread socketThread = getSocketThread();
+        socketThread.setDaemon(true);
+        socketThread.start();
+
+        try {
+            synchronized (this) {
+                this.wait();
+            }
+        } catch (InterruptedException e) {
+            ConsoleHelper.writeMessage("Произошла ошибка во время ожидания.");
+            return;
+        }
+        if (clientConnected) {
+            ConsoleHelper.writeMessage("Соединение установлено. Для выхода наберите команду 'exit'.");
+            while (clientConnected) {
+                String text = ConsoleHelper.readString();
+                if (text.equalsIgnoreCase("exit")) break;
+
+                if (shouldSendTextFromConsole()) {
+                    sendTextMessage(text);
+                }
+            }
+
+        } else {
+            ConsoleHelper.writeMessage("Произошла ошибка во время работы клиента.");
+        }
+
+
+    }
+
+    public static void main(String[] args) {
+        Client client = new Client();
+        client.run();
+    }
 
     protected static class SocketThread extends Thread {
     }
