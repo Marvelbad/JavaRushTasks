@@ -6,6 +6,7 @@ import com.javarush.task.task30.task3008.Message;
 import com.javarush.task.task30.task3008.MessageType;
 
 import java.io.IOException;
+import java.net.Socket;
 
 public class Client {
     protected Connection connection;
@@ -87,7 +88,7 @@ public class Client {
         }
 
         protected void informAboutAddingNewUser(String userName) {
-            ConsoleHelper.writeMessage(userName + "присоединился к чату.");
+            ConsoleHelper.writeMessage(userName + " присоединился к чату.");
         }
 
         protected void informAboutDeletingNewUser(String userName) {
@@ -128,6 +129,20 @@ public class Client {
                 } else {
                     throw new IOException("Unexpected MessageType");
                 }
+            }
+        }
+
+        @Override
+        public void run() {
+            try {
+                String serverAddress = getServerAddress();
+                int serverPort = getServerPort();
+                Socket socket = new Socket(serverAddress, serverPort);
+                connection = new Connection(socket);
+                clientHandshake();
+                clientMainLoop();
+            } catch (IOException | ClassNotFoundException e) {
+                notifyConnectionStatusChanged(false);
             }
         }
     }
