@@ -11,8 +11,9 @@ import java.util.List;
 
 public class Solution {
     public static void main(String[] args) {
-        //исправь outputStream/inputStream в соответствии с путем к твоему реальному файлу
+        //исправьте outputStream/inputStream в соответствии с путем к вашему реальному файлу
         try {
+
             File your_file_name = File.createTempFile("your_file_name", null);
             OutputStream outputStream = new FileOutputStream(your_file_name);
             InputStream inputStream = new FileInputStream(your_file_name);
@@ -42,12 +43,12 @@ public class Solution {
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return false;
+            if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
 
             Human human = (Human) o;
 
-            if (name == null ? !name.equals(human.name) : human.name != null) return false;
+            if (name != null ? !name.equals(human.name) : human.name != null) return false;
             return assets != null ? assets.equals(human.assets) : human.assets == null;
 
         }
