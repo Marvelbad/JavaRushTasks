@@ -92,7 +92,7 @@ public class Client {
         }
 
         protected void informAboutDeletingNewUser(String userName) {
-            ConsoleHelper.writeMessage(userName + "покинул чат.");
+            ConsoleHelper.writeMessage(userName + " покинул чат.");
         }
 
         protected void notifyConnectionStatusChanged(boolean clientConnected) {
