@@ -6,7 +6,8 @@ package com.javarush.task.jdk13.task34.task3403;
 
 public class Solution {
     public static void main(String[] args) {
-
+        Solution solution = new Solution();
+        solution.recurse(-132);
     }
 
     public void recurse(int n) {
