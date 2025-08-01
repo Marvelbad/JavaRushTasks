@@ -10,29 +10,33 @@ public class Solution implements Action {
     private int param;
 
     private Action solutionAction = new Action() {
+        @Override
         public void someAction() {
             if (param > 0) {
+                // Создаём один раз firstClass вне рекурсии!
                 FirstClass firstClass = new FirstClass() {
                     @Override
                     public Action getDependantAction() {
-                        while (param > 0) {
-                            System.out.println(param--);
-                        }
-                        super.someAction();
                         Solution.this.someAction();
                         return this;
                     }
                 };
+                // Печатаем значения param от param до 1
+                while (param > 0) {
+                    System.out.println(param--);
+                }
+                // Вызываем firstClass
+                firstClass.someAction();
+                // Теперь вызываем SecondClass
                 firstClass.getDependantAction();
             } else {
-                SecondClass secondClass = new SecondClass() {
+                new SecondClass() {
                     @Override
                     public void someAction() {
                         sb.append(SPECIFIC_ACTION_FOR_ANONYMOUS_SECOND_CLASS_PARAM).append(param);
                         super.someAction();
                     }
-                };
-                secondClass.someAction();
+                }.someAction();
             }
         }
     };
