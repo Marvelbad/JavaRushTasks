@@ -19,8 +19,8 @@ public class Solution {
 
         IntStream.rangeClosed(1, 10).forEach(i -> executor.submit(() -> doExpensiveOperation(i)));
 
-        executor.shutdownNow();
-
+        List<Runnable> runnableList = executor.shutdownNow();
+        runnableList.forEach(System.out::println);
     }
 
     private static void doExpensiveOperation(int localId) {
