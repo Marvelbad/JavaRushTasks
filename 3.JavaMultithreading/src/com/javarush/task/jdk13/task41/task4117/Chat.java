@@ -10,6 +10,7 @@ public class Chat implements Mediator {
     @Override
     public void sendMessage(String msg, int userId) {
         User user = db.getById(userId);
+        user.receive(msg);
     }
 
     @Override
