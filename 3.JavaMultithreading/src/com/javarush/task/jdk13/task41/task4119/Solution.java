@@ -10,7 +10,6 @@ import com.javarush.task.jdk13.task41.task4119.strategy.PaypalStrategy;
 import java.time.LocalDate;
 
 import static java.util.Calendar.SEPTEMBER;
-import static com.javarush.task.jdk13.task41.task4119.shop.PaymentType.*;
 
 /* 
 Стратегический шопинг
